@@ -37,8 +37,11 @@ export default function Home() {
         // 로컬 스토리지에서 데이터 확인
         const savedTodos = localStorage.getItem(STORAGE_KEY);
         if (savedTodos) {
-          setTodos(JSON.parse(savedTodos));
-          return;
+          const parsedTodos = JSON.parse(savedTodos);
+          if (Array.isArray(parsedTodos) && parsedTodos.length > 0) {
+            setTodos(parsedTodos);
+            return;
+          }
         }
 
         // 로컬 스토리지에 데이터가 없으면 API에서 가져오기
@@ -79,6 +82,10 @@ export default function Home() {
     setTodos([...todos, newTodo]);
   };
 
+  const handleDelete = (id: number) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
   return (
     <div css={containerStyles}>
       <div css={listStyles}>
@@ -88,6 +95,7 @@ export default function Home() {
             title={todo.title}
             isCompleted={todo.isCompleted}
             onToggle={() => handleToggle(todo.id)}
+            onDelete={() => handleDelete(todo.id)}
           />
         ))}
       </div>
