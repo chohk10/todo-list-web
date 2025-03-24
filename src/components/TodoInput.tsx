@@ -10,13 +10,14 @@ const containerStyles = css`
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20px;
   padding-top: 0px;
 `;
 
 const inputContainerStyles = css`
   max-width: 800px;
   margin: 0 auto;
+  padding: 14px;
+  padding-top: 0px;
   display: flex;
   gap: 10px;
 `;
