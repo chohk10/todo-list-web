@@ -2,6 +2,7 @@
 
 import { css } from '@emotion/react';
 import { TodoCard } from '@/components/TodoCard';
+import { TodoInput } from '@/components/TodoInput';
 import { useState } from 'react';
 
 const containerStyles = css`
@@ -9,6 +10,7 @@ const containerStyles = css`
   margin: 0 auto;
   padding: 20px;
   min-height: 100vh;
+  padding-bottom: 100px;
 `;
 
 interface Todo {
@@ -37,6 +39,15 @@ export default function Home() {
     ));
   };
 
+  const handleAdd = (title: string) => {
+    const newTodo: Todo = {
+      id: Math.max(...todos.map(todo => todo.id), 0) + 1,
+      title,
+      isCompleted: false
+    };
+    setTodos([...todos, newTodo]);
+  };
+
   return (
     <div css={containerStyles}>
       {todos.map(todo => (
@@ -47,6 +58,7 @@ export default function Home() {
           onToggle={() => handleToggle(todo.id)}
         />
       ))}
+      <TodoInput onAdd={handleAdd} />
     </div>
   );
 }
