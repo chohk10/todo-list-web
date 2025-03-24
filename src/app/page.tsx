@@ -81,16 +81,16 @@ export default function Home() {
 
   return (
     <div css={containerStyles}>
-        <div css={listStyles}>
-            {todos.map(todo => (
-                <TodoCard
-                key={todo.id}
-                title={todo.title}
-                isCompleted={todo.isCompleted}
-                onToggle={() => handleToggle(todo.id)}
-                />
-            ))}
-        </div>
+      <div css={listStyles}>
+        {todos.map(todo => (
+          <TodoCard
+            key={todo.id}
+            title={todo.title}
+            isCompleted={todo.isCompleted}
+            onToggle={() => handleToggle(todo.id)}
+          />
+        ))}
+      </div>
       <TodoInput onAdd={handleAdd} />
     </div>
   );
